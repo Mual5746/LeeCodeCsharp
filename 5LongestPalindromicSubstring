@@ -1,0 +1,62 @@
+//leetcode C# solution : 5 Longest Palindromic Substring 
+
+using System;
+
+namespace LongestPalindromicSbstring
+{
+    class Program
+    {
+        public class Solution
+        {
+           
+
+        public static void Main(string[] args)
+        {
+            var strang = new Solution();
+            string pal =    strang.LongestPalindrome("sdcracecarewwe");
+            Console.WriteLine("the palindrom is:" + pal);
+            Console.WriteLine("the end ");
+            }
+
+            int length = 0;
+            int start = 0;
+        public string LongestPalindrome(string s)
+        {
+                if (s == null || s.Length <= 1) return s;
+
+                for (int i = 0; i < s.Length; i++)
+                {
+                    SplitMidle(s, i, i);
+                    SplitMidle(s, i, i + 1);
+
+                }
+                //return a substring at index start to length
+                return s.Substring(start, length);
+         }
+
+            //create a void method to split s in the middle left and right index
+         private void SplitMidle(string s, int left, int right)
+            {
+
+                //while left is greater than 0 and right less then the length of 
+                //s and s  at index of left and right is equal 
+                while (left >= 0 && right < s.Length  && s[left] == s[right])
+                {
+                    //decrease left index
+                    left--;
+                    // increase right index 
+                    right++;
+
+                    if (right - left - 1 > length)
+                    {
+                        length = right - left - 1;
+                        start = left + 1;
+                    }
+
+                }
+
+            }
+
+        }
+    }
+}
