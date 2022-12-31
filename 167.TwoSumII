@@ -1,0 +1,24 @@
+// leetCode C# solution : 167. Two Sum II - Input Array Is Sorted
+
+public class Solution {
+    public int[] TwoSum(int[] numbers, int target) {
+        int leftPointer = 0;
+        int rightPointer = numbers.Length -1;
+        List < int > array = new List < int >();
+
+        while (leftPointer <= rightPointer ) {
+            int sum = numbers[ leftPointer ] + numbers[ rightPointer];
+
+            if (sum > target){
+                rightPointer--;
+            } else if(sum < target) {
+                leftPointer++;
+            } else {
+                return new int [] {  leftPointer +1, rightPointer + 1  };
+            }
+        }
+
+        return new int [] {  leftPointer +1, rightPointer + 1  };
+        
+    }
+}
