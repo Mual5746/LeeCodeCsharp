@@ -1,0 +1,51 @@
+//LeetCode C# solution: 234. Palindrome Linked List
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool IsPalindrome(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        // 1 2 3 2 1 
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        } 
+        //Slow is at index 2, we want to run slow rever like 3 2 1 and compare with fast
+        slow = revers(slow);
+        //start fast from the head
+        fast = head; 
+
+        while (slow != null) {
+            if (slow.val != fast.val){
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return true;
+    }
+
+    public ListNode revers (ListNode head){
+            ListNode prev = null;
+            ListNode tempNode;
+            while (head != null){
+                //3 2 1
+                tempNode = head.next; //2
+                head.next = prev; // 1
+                prev = head; // now 1 is heaf´d 
+                head = tempNode;
+            }
+            return prev;
+
+    }
+
+}
