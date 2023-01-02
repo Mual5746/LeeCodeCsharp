@@ -1,0 +1,61 @@
+//one-week-preparation-kit-mini-max-sum 
+//https://www.hackerrank.com/challenges/one-week-preparation-kit-mini-max-sum/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=preparation-kits&playlist_slugs%5B%5D=one-week-preparation-kit&playlist_slugs%5B%5D=one-week-day-one&h_r=next-challenge&h_v=zen
+
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'miniMaxSum' function below.
+     *
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
+
+    public static void miniMaxSum(List<int> arr)
+    {
+        int [] arrSum = new int[arr.Count] ;
+
+        /*
+         foreach (var i in arr)
+        {
+            Console.Write(", " + i );
+        }
+        */
+
+        for (int i = 0; i < arr.Count; i++)
+        {
+           
+            arrSum[i] = arr.Sum(x => Convert.ToInt32(x)) - arr[i];
+        }
+        int maxvalue = arrSum.Max();
+        int minvalue = arrSum.Min();
+
+        Console.WriteLine(  minvalue + " " + maxvalue);
+
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+
+        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+
+        Result.miniMaxSum(arr);
+    }
+}
