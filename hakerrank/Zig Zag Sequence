@@ -1,0 +1,87 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+
+    public static void findZigZagSequence(List <int> a)
+    {
+        // { 1, 2, 3, 5, 6, 4, 7 };
+        a.Sort();
+        // // { 1, 2, 3, 4, 5, 6, 7 };
+        int n = a.Count;
+        int mid = (a.Count +1) / 2; // 8/2
+        int temp = a[mid];
+        a[mid] = a[n - 1];
+        a[n - 1] = temp;
+        Console.Write(" aftersort " );
+        for (int i = 0; i <n; i++)
+        {
+            Console.Write(" " + a[i]);
+
+        }
+        Console.WriteLine("  " );
+
+
+        // { 1, 2, 5, 6, 4, 7 };
+        // index of the number
+        int start = mid + 1;  //4
+        int end = n - 2; // 6
+        while (start <= end)
+        {
+            temp = a[start];
+            a[start] = a[end];
+            a[end] = temp;
+            start++;
+            end--;
+        }
+        Console.Write("final: ");
+        for (int i = 0; i < n; i++)
+        {
+            if (i >= 0)
+                Console.Write(" " + a[i]);
+        }
+        Console.WriteLine();
+    }
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        //TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        //int s = Console.ReadLine();
+        List <int > arr = new List<int> () { 1, 2, 3, 5, 6, 4, 7 };
+
+        Console.Write(" before : ");
+
+         for (int i = 0; i <arr.Count; i++)
+        {
+            Console.Write(" " + arr[i]);
+        }
+        Console.WriteLine(" ");
+
+        //Console.WriteLine(" list before: " + arr.ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList());
+
+        //int n = Convert.ToInt32(Console.ReadLine().Trim());
+
+        //List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+
+        //List<int> result = ;
+
+        Result.findZigZagSequence(arr);
+    }
+}
