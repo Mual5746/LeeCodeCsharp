@@ -1,0 +1,113 @@
+
+
+
+
+
+//no working -----------------------
+
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+
+    // Definition for a binary tree node.
+    public class TreeNode
+    {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    int min = int.MaxValue;
+    bool flag = false;
+
+    public int FindSecondMinimumValue(TreeNode root)
+    {
+        int min1 = findMin(root, root.val);
+        if (!flag)
+            return -1;
+
+        return min1;
+    }
+    /*public int findsecondMin(TreeNode root)
+    {
+        if (root == null)
+            return 0;
+        Var [] res = new var[1];
+
+        procces(root, min);
+        min = Math.Min(min, root.val);
+
+        return min;
+
+    } */
+
+    public int findMin(TreeNode root, int k)
+    {
+        if (root == null)
+            return 0;
+
+        findMin(root.left, k);
+        findMin(root.right, k);
+
+        if (k != root.val)
+        {
+            flag = true;
+            min = Math.Min(min, root.val);
+        }
+
+        return min;
+
+    }
+
+    /* private void procces(TreeNode node, int[] res)
+    {
+        if (node == null || (node.left == null && node.right == null))
+        {
+            return;
+        }
+        // childeren, left and right
+
+        //left childe is less than the parent 
+        if (node.left.val < node.val)
+        {
+            if (res[0] == null; )
+        }
+
+    }*/
+    class Solution
+    {
+        public static void Main(string[] args)
+        {
+            
+
+            var numm = new[] { 2, 2, 5,  5, 7 };
+
+            var index = TreeNode(numm);
+
+            TreeNode tree = new TreeNode[2, 2, 5, 5, 7];
+
+            Console.WriteLine(result);
+
+        }
+    }
+}
