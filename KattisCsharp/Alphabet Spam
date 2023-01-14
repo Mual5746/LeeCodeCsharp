@@ -1,0 +1,51 @@
+
+// https://open.kattis.com/problems/alphabetspam?editsubmit=10229650 
+/*
+
+This code snippet reads a string input from the console and converts it into an array of characters.
+Then it iterates over the array of characters and checks the value of each character.
+If the character is a witespace ("_")  the amount of witespace plus one
+If the character is in the lowercase range (between 'a' and 'z'), it is in the lowercase range.
+If the character is in the uppercase range (between 'A' and 'Z'),   it is in the uppercase range.
+ Symbols are defined as characters that do not fall in one of the first three groups.
+
+*/
+
+using System;
+
+class MainClass
+{
+    public static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        char[] charArray = input.ToCharArray();
+        int whiteSpace = 0;
+        int lowercaseCount = 0;
+        int uppercaseCount = 0;
+        int symbols = 0;
+        for (int i = 0; i < charArray.Length; i++)
+        {
+            if (charArray[i] == '_' )
+            {
+                whiteSpace++;
+            }
+            else if (charArray[i] >= 'a' && charArray[i] <= 'z')
+            {
+                lowercaseCount++;
+            }
+            else if (charArray[i] >= 'A' && charArray[i] <= 'Z')
+            {
+                uppercaseCount++;
+            }
+            else if ( (charArray[i] >= '!' && charArray[i] <= '@')  ||  (charArray[i] >= '[' && charArray[i] <= '`') && charArray[i] != '_'
+                || (charArray[i] >= '{' && charArray[i] <= '~') )   {
+                symbols++;
+            }
+        }
+        double totalCount = charArray.Length;
+        Console.WriteLine( whiteSpace / totalCount);
+        Console.WriteLine( lowercaseCount / totalCount);
+        Console.WriteLine( uppercaseCount / totalCount);
+        Console.WriteLine( symbols / totalCount);
+    }
+}
