@@ -1,5 +1,6 @@
 
 // https://open.kattis.com/problems/alphabetspam?editsubmit=10229650 
+// charecters: https://www.w3schools.com/charsets/ref_html_ascii.asp#:~:text=ASCII%20is%20a%207%2Dbit,Z%2C%20and%20some%20special%20characters. 
 /*
 
 This code snippet reads a string input from the console and converts it into an array of characters.
