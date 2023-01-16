@@ -1,0 +1,89 @@
+
+
+using System;
+
+class MainClass
+{
+    public static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        char[] charArray = input.ToCharArray();
+
+        string input2 = Console.ReadLine();
+        char[] charArray2 = input2.ToCharArray();
+        int length1 = 0, length2 = 0;
+
+        int chara1 = 0, chara2 = 0;
+
+        for (int i = 0; i < charArray.Length;i++)
+        {
+            if (charArray.Length == 1 && charArray[i] == 'h')
+            {
+                length1 = charArray.Length; 
+            } else if ( charArray[i] == 'a' && charArray[charArray.Length - 1] == 'h') {
+
+                length1 = charArray.Length;
+            } else if (chara1 < -1 && chara1 > 999 ){
+                break;
+            }
+        }
+        for (int i = 0; i < charArray2.Length; i++)
+        {
+            if (charArray2.Length == 1 && charArray2[i] == 'h')
+            {
+                length2 = charArray2.Length;
+
+            } else if (charArray2[i] == 'a' && charArray2[charArray2.Length - 1] == 'h')
+            {
+
+                length2 = charArray2.Length;
+            }
+            else if (chara2 < -1 && chara2 > 999)
+            {
+                break;
+            }
+        }
+
+        if (length1 > length2) {
+
+            Console.WriteLine("go");
+        } else
+        {
+            Console.WriteLine("no");
+        }
+        
+    }
+}
+//------------------------------------------------------------------------------------------
+
+using System;
+
+class MainClass {
+    public static void Main(string[] args)
+    {
+        string input1 = Console.ReadLine();
+        string input2 = Console.ReadLine();
+        if (input1.Length > 0 && input1.Length <= 999 && input2.Length > 0 && input2.Length <= 999)
+        {
+            if (input1.StartsWith("a") && input1.EndsWith("h") && input2.StartsWith("a") && input2.EndsWith("h"))
+            {
+                if (input1.Length > input2.Length)
+                {
+                    Console.WriteLine("Go");
+                }
+                else
+                {
+                    Console.WriteLine("No");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid input");
+        }
+    }
+}
