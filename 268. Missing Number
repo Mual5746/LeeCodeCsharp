@@ -1,0 +1,18 @@
+
+public class Solution {
+    public int MissingNumber(int[] nums) {
+        Array.Sort(nums);
+        int missing =0;
+        for (int i = 0; i < nums.Length; i++){
+            if ( nums[i] != i){
+                missing = i;
+                break;
+            } else {
+                missing = i +1;
+                
+            }
+        }
+        return missing;
+        
+    }
+}
