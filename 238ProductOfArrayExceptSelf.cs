@@ -82,6 +82,22 @@ namespace solveCODe23
 
         }
 
+        //LINQ solution 
+
+        public int[] ProductExceptSelf(int[] nums)
+        {
+            int numOfZeros = nums.Count(num => num == 0);
+        
+            int prod = nums.Where(num => num != 0).Aggregate(1, (currentProd, num) => currentProd * num);
+        
+            int[] result = nums.Select(num =>
+                numOfZeros > 1 ? 0 :
+                numOfZeros == 1 ? (num == 0 ? prod : 0) :
+                prod / (num == 0 ? 1 : num)
+            ).ToArray();
+        
+            return result;
+        }
     }
 
 }
