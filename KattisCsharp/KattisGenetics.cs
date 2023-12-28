@@ -8,7 +8,7 @@ namespace PIQcodibility
 
     {
         /*
-         * Genetics
+         * Genetics https://open.kattis.com/problems/genetics2?editresubmit=12558323 
 
             For villains that intend to take over the world, a common way to avoid getting caught is to clone themselves.
         You have managed to catch an evil villain and her N -1 clones, and you are now trying to figure out which one of
@@ -41,6 +41,11 @@ namespace PIQcodibility
             CCA
             ACA
             AAA
+            4 3 1                 
+            ACC
+            CCA
+            ACA
+            AAA
 
             Sample Input 2	   Sample Output 2
             4 4 3                4
@@ -67,14 +72,21 @@ namespace PIQcodibility
 
             //Extract sequence from remaining lines
             char[][] sequences = new char[N][];
+            string [] sequences1 = new string[N];
             for (int i = 1; i <= N; i++)
             {
                 sequences[i -1]= rows[i].ToCharArray();
-             }
+                sequences1[i - 1] = rows[i].ToString();
+            }
+
+            //-----Efective solution--------
+
 
             int villainIndex = FindVillainIndex(N, M, K, sequences);
             Console.WriteLine(villainIndex);
 
+            int villainIndex2 = FindVillainIndex(sequences1, N, M, K);
+            Console.WriteLine($" Result from effective solution: {villainIndex2}");
 
         }//main
 
@@ -123,7 +135,7 @@ namespace PIQcodibility
             int[,] frequencyMap = BuildFrequencyMap(sequences, M);
 
             var candidates = FindTwoCandidateSequences(sequences, frequencyMap, M, N, K);
-            int villainIndex = CompareCandidatesToFrequencies(candidates, sequences, frequencyMap, K, M);
+            int villainIndex = CompareCandidatesToFrequencies(candidates, sequences, frequencyMap, K, M, N);
 
             return villainIndex;
         }
@@ -171,7 +183,7 @@ namespace PIQcodibility
         }
         //Compare these two candidate sequences against the frequency map.The sequence that matches the most frequent character at each
         //position(except for K positions) is the real villain's.
-        static int CompareCandidatesToFrequencies(int[] candidates, string[] sequences, int[,] frequencyMap, int K, int M)
+        static int CompareCandidatesToFrequencies(int[] candidates, string[] sequences, int[,] frequencyMap, int K, int M, int N)
         {
             foreach (var candidateIndex in candidates)
             {
@@ -179,8 +191,8 @@ namespace PIQcodibility
                 for (int i = 0; i < M; i++)
                 {
                     int charIndex = "ACGT".IndexOf(sequences[candidateIndex][i]);
-                    if (frequencyMap[i, charIndex] == M - 1)//N - 1)
-                        matchCount++;
+                    if (frequencyMap[i, charIndex] == N - 1)//N - 1)
+                        return i + 1;//matchCount++;
                 }
 
                 if (matchCount == M - K)
