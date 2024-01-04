@@ -15,7 +15,7 @@ namespace PIQcodibility
             int[] nums = {1,2,3,4};
             int k = 5;
 
-            Console.WriteLine($" Foundet sum pairs: {cont.MaxOperations(nums, k )} ");
+            Console.WriteLine($" Foundet sum pairs: {cont.MaxOperations(nums, k )}, MAP: {cont.MaxOperationsMap(nums, k)} ");
 
         }//main
 
@@ -79,9 +79,28 @@ namespace PIQcodibility
             }
             return count;
         }
-        
 
-    }
+        public int MaxOperationsMap(int[] nums, int k)
+        {
+            var map = new Dictionary<int, int>();
+            int count = 0;
+
+            foreach (int num in nums)
+            {
+                if (map.ContainsKey(k - num) && map[k - num] > 0)
+                {
+                    map[k - num]--;
+                    count++;
+
+                }
+                else if (!map.TryAdd(num, 1)) map[num]++;
+  
+            }
+            return count;
+        }
+
+
+        }
 
 }
 
